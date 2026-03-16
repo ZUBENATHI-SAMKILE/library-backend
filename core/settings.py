@@ -64,7 +64,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "core.wsgi.application"
 
-# Uses DATABASE_URL on Render, falls back to local PostgreSQL
+# DATABASE_URL on Render
 DATABASE_URL = os.getenv("DATABASE_URL")
 
 if DATABASE_URL:
@@ -127,3 +127,13 @@ USE_TZ = True
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 FINE_RATE_PER_DAY = float(os.getenv("FINE_RATE_PER_DAY", "0.50"))
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = os.getenv('group.bookbtore@gmail.com')      
+EMAIL_HOST_PASSWORD = os.getenv('ttvi katd tuzr hsvl ')  
+DEFAULT_FROM_EMAIL = os.getenv('EMAIL_HOST_USER')
+ 
+FRONTEND_URL = os.getenv('FRONTEND_URL', 'http://localhost:5173')
