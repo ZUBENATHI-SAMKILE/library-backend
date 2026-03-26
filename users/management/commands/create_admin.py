@@ -5,10 +5,15 @@ from users.models import User
 class Command(BaseCommand):
     help = "Create the admin account"
 
+    def add_arguments(self, parser):
+        parser.add_argument("--email", default="Noneka@library.com")
+        parser.add_argument("--name", default="Noneka")
+        parser.add_argument("--password", default="Noneka01")
+
     def handle(self, *args, **kwargs):
-        email = input("Admin email: ")
-        name = input("Admin name: ")
-        password = input("Admin password: ")
+        email = kwargs["email"]
+        name = kwargs["name"]
+        password = kwargs["password"]
 
         if User.objects.filter(email=email).exists():
             self.stdout.write(self.style.WARNING("User already exists."))
