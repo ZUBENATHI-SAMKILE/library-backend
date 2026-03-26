@@ -96,13 +96,15 @@ SIMPLE_JWT = {
 }
 
 # CORS 
-FRONTEND_URL = os.getenv("FRONTEND_URL", "http://localhost:5174")
+FRONTEND_URL = os.getenv("FRONTEND_URL")
+
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5174",
     "http://127.0.0.1:5174",
-    FRONTEND_URL,
 ]
-CORS_ALLOW_CREDENTIALS = True
+
+if FRONTEND_URL:
+    CORS_ALLOWED_ORIGINS.append(FRONTEND_URL)
 
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:5174",
