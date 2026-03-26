@@ -14,6 +14,7 @@ class Member(models.Model):
     phone = models.CharField(max_length=20, blank=True, default="")
     address = models.TextField(blank=True, default="")
     password = models.CharField(max_length=255, blank=True, default="")
+    
     membership_date = models.DateField(auto_now_add=True)
     membership_expiry = models.DateField()
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default="active")

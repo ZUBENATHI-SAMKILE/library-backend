@@ -96,20 +96,19 @@ SIMPLE_JWT = {
 }
 
 # CORS 
-FRONTEND_URL = os.getenv("FRONTEND_URL")
-
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5174",
-    "http://127.0.0.1:5174",
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
 ]
 
-if FRONTEND_URL:
+FRONTEND_URL = os.getenv("FRONTEND_URL", "http://localhost:5173")
+
+if FRONTEND_URL and FRONTEND_URL not in CORS_ALLOWED_ORIGINS:
     CORS_ALLOWED_ORIGINS.append(FRONTEND_URL)
 
-CSRF_TRUSTED_ORIGINS = [
-    "http://localhost:5174",
-    "https://library-frontend-five-kohl.vercel.app",
-]
+CORS_ALLOW_CREDENTIALS = True
+
+
 
 # Static Files
 STATIC_URL = "/static/"
