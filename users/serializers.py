@@ -8,7 +8,7 @@ class RegisterSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ["name", "email", "password", "confirm_password"]
+        fields = ["name", "email", "password", "confirm_password", "phone", "address"]
 
     def validate(self, data):
         if data["password"] != data["confirm_password"]:
@@ -22,6 +22,8 @@ class RegisterSerializer(serializers.ModelSerializer):
             name=validated_data["name"],
             password=validated_data["password"],
             role="librarian",
+            phone=validated_data.get("phone", ""),      
+            address=validated_data.get("address", ""),
         )
 
 
