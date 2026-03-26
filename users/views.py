@@ -110,10 +110,10 @@ class ForgotPasswordView(APIView):
         reset_link = f"{frontend_url}/reset-password/{uid}/{token}/"
 
         send_mail(
-            subject="CineTrack — Password Reset Request",
+            subject="Library — Password Reset Request",
             message=f"""Hi {user.username},
 
-You requested a password reset for your CineTrack account.
+You requested a password reset for your Library account.
 
 Click the link below to reset your password (valid for 24 hours):
 {reset_link}
