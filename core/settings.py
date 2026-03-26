@@ -110,12 +110,15 @@ CORS_ALLOW_CREDENTIALS = True
 
 ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "localhost,127.0.0.1").split(",")
 ALLOWED_HOSTS = [h.strip() for h in ALLOWED_HOSTS]
+USE_X_FORWARDED_HOST = True
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:5173",
     "https://library-frontend-five-kohl.vercel.app",
     "https://library-backend-uqye.onrender.com",  # add this
 ]
+
 
 # Static Files
 STATIC_URL = "/static/"
