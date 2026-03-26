@@ -99,7 +99,7 @@ SIMPLE_JWT = {
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
-    os.getenv("FRONTEND_URL", "http://localhost:5173"),
+    os.getenv("FRONTEND_URL"),
 ]
 CORS_ALLOW_CREDENTIALS = True
 
@@ -126,4 +126,4 @@ EMAIL_HOST_USER = os.getenv('group.bookbtore@gmail.com')
 EMAIL_HOST_PASSWORD = os.getenv('ttvi katd tuzr hsvl ')  
 DEFAULT_FROM_EMAIL = os.getenv('EMAIL_HOST_USER')
  
-FRONTEND_URL = os.getenv('FRONTEND_URL', 'http://localhost:5173')
+FRONTEND_URL = os.getenv('FRONTEND_URL',)
