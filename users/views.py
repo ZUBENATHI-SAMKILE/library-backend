@@ -123,22 +123,22 @@ class ForgotPasswordView(APIView):
         reset_link = f"{frontend_url}/reset-password/{uid}/{token}/"
 
         send_mail(
-            subject="Library — Password Reset Request",
-            message=f"""Hi {user.username},
+    subject="LibraryMS — Password Reset Request",
+    message=f"""Hi {user.name},
 
-You requested a password reset for your Library account.
+You requested a password reset for your LibraryMS account.
 
 Click the link below to reset your password (valid for 24 hours):
 {reset_link}
 
 If you did not request this, please ignore this email.
 
-— CineTrack Team
+— LibraryMS Team
 """,
-            from_email=settings.DEFAULT_FROM_EMAIL,
-            recipient_list=[user.email],
-            fail_silently=False,
-        )
+    from_email=settings.DEFAULT_FROM_EMAIL,
+    recipient_list=[user.email],
+    fail_silently=False,
+)
 
         return Response({"message": "If that email exists, a reset link has been sent."})
 
