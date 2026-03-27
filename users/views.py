@@ -50,11 +50,24 @@ class LoginView(APIView):
                 status=status.HTTP_400_BAD_REQUEST
             )
 
-        user = authenticate(request, username=email, password=password)
-        if not user:
+        try:
+            user = User.objects.get(email=email)
+        except User.DoesNotExist:
             return Response(
                 {"error": "Invalid credentials"},
                 status=status.HTTP_401_UNAUTHORIZED
+            )
+
+        if not user.check_password(password):
+            return Response(
+                {"error": "Invalid credentials"},
+                status=status.HTTP_401_UNAUTHORIZED
+            )
+
+        if not user.is_active:
+            return Response(
+                {"error": "Account is disabled"},
+                status=status.HTTP_403_FORBIDDEN
             )
 
         tokens = get_tokens(user)
