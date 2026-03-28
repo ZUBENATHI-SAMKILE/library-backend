@@ -15,6 +15,6 @@ class BookSerializer(serializers.ModelSerializer):
         available = data.get("available_copies", total)
         if available > total:
             raise serializers.ValidationError(
-                "Available copies cannot exceed total copies."
+                "Available copies cannot exceed total copies!"
             )
         return data
