@@ -1,7 +1,7 @@
 import os
 import threading
 import time
-import requests
+import urllib.request
 from django.apps import AppConfig
 
 
@@ -13,7 +13,7 @@ class BooksConfig(AppConfig):
         
         if os.environ.get("RUN_MAIN") != "true":
             return
-        
+       
         if "migrate" in os.sys.argv or "makemigrations" in os.sys.argv:
             return
 
@@ -29,7 +29,10 @@ class BooksConfig(AppConfig):
         while True:
             time.sleep(14 * 60)
             try:
-                requests.get(f"{backend_url}/health/", timeout=10)
+                urllib.request.urlopen(
+                    f"{backend_url}/health/",
+                    timeout=10
+                )
                 print("✓ Keep-alive ping sent")
             except Exception as e:
                 print(f"✗ Keep-alive failed: {e}")
